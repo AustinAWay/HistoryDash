@@ -1,0 +1,3 @@
+date,day_of_the_week,is_weekend,week_start_date,week_end_date,session,is_school_day,notes,calendar_week_id,school_days_in_week,is_instruction_week,instruction_week_id,last_instruction_week_id_for_date
+2025-08-01,Friday,FALSE,2025-07-27,2025-08-03,,FALSE,Staff Meetings (No Students),1,0,False,,
+2025-08-13,Wednesday,FALSE,2025-08-11,2025-08-17,Session 1,TRUE,First Day of School / Session 1 Starts,3,3,True,1,

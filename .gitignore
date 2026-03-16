@@ -1,0 +1,48 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Credentials and config with secrets
+dashboard_config.json
+
+# Student-specific data (private)
+student_plans/
+student_plans_v3/
+PERSONALIZED_LEARNING_PLANS.md
+PERSONALIZED_LEARNING_PLANS_V2.md
+INTERVENTION_TRACKING.md
+COACHING_PLAN.md
+message_status.json
+reports/
+logs/
+
+# School-specific data files
+*.xlsx
+all_ap_learning_data.xlsx
+Master Roster*.xlsx
+AP Progress Tracker*.xlsx
+AP Practice Tests*.xlsx
+
+# Personal notes
+LS Thoughts.md
+
+# Claude Code local settings
+.claude/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Calendar data (school-specific)
+calendar_date.csv
