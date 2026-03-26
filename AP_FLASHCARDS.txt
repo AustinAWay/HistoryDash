@@ -1,0 +1,62 @@
+#separator:tab
+#html:false
+#tags column:3
+APHG Unit 1 name and focus?	Thinking Geographically - maps, scale, space, place, regions, diffusion	APHG::Units
+APHG Unit 2 name and focus?	Population & Migration - population pyramids, DTM, push/pull factors, refugees	APHG::Units
+APHG Unit 3 name and focus?	Cultural Patterns - language, religion, ethnicity, cultural landscapes	APHG::Units
+APHG Unit 4 name and focus?	Political Patterns - borders, sovereignty, devolution, supranationalism	APHG::Units
+APHG Unit 5 name and focus?	Agriculture - agricultural revolutions, von Thunen model, food systems	APHG::Units
+APHG Unit 6 name and focus?	Cities & Urban Land-Use - urban models, suburbanization, smart growth	APHG::Units
+APHG Unit 7 name and focus?	Industrial & Economic Development - development indicators, industrialization, globalization	APHG::Units
+APHG exam format?	60 MCQs (60 min, 50%) + 3 FRQs (75 min, 50%)	APHG::Exam
+APHG FRQ format?	All 3 are stimulus-based (maps, images, data). Each has 7 parts (a-g). No DBQ or LEQ.	APHG::Exam
+APHG units mnemonic?	Tiny People Can Pick Apples Carefully Indoors (Thinking, Population, Cultural, Political, Agriculture, Cities, Industrial)	APHG::Units
+How many units in APHG?	7 units	APHG::Exam
+WHAP Unit 1 name, period, focus?	The Global Tapestry (1200-1450) - Song China, Islamic empires, feudal Europe	WHAP::Units
+WHAP Unit 2 name, period, focus?	Networks of Exchange (1200-1450) - Silk Roads, Indian Ocean trade, Trans-Saharan trade	WHAP::Units
+WHAP Unit 3 name, period, focus?	Land-Based Empires (1450-1750) - Ottoman, Safavid, Mughal, Qing, Russian expansion	WHAP::Units
+WHAP Unit 4 name, period, focus?	Transoceanic Interconnections (1450-1750) - Columbian Exchange, Atlantic slave trade, maritime empires	WHAP::Units
+WHAP Unit 5 name, period, focus?	Revolutions (1750-1900) - Enlightenment, American/French/Haitian revolutions, nationalism	WHAP::Units
+WHAP Unit 6 name, period, focus?	Consequences of Industrialization (1750-1900) - Industrial Revolution, imperialism, migration	WHAP::Units
+WHAP Unit 7 name, period, focus?	Global Conflict (1900-present) - WWI, WWII, total war, genocide	WHAP::Units
+WHAP Unit 8 name, period, focus?	Cold War & Decolonization (1900-present) - US vs USSR, independence movements, proxy wars	WHAP::Units
+WHAP Unit 9 name, period, focus?	Globalization (1900-present) - economic integration, technology, environment, resistance movements	WHAP::Units
+WHAP exam format?	55 MCQs (40%) + 3 SAQs (20%) + 1 DBQ (25%) + 1 LEQ (15%)	WHAP::Exam
+What is a SAQ?	Short Answer Question - answer parts a/b/c directly, no thesis needed	WHAP::Exam
+What is a DBQ?	Document-Based Question - analyze 7 documents, write thesis-driven essay with outside evidence	WHAP::Exam
+What is a LEQ?	Long Essay Question - no documents, use your knowledge, thesis-driven argument	WHAP::Exam
+How many units in WHAP?	9 units (covers 1200 CE to present)	WHAP::Exam
+WHAP period 1200-1450 covers which units?	Units 1-2 (Global Tapestry, Networks of Exchange)	WHAP::Units
+WHAP period 1450-1750 covers which units?	Units 3-4 (Land-Based Empires, Transoceanic Interconnections)	WHAP::Units
+WHAP period 1750-1900 covers which units?	Units 5-6 (Revolutions, Consequences of Industrialization)	WHAP::Units
+WHAP period 1900-present covers which units?	Units 7-9 (Global Conflict, Cold War & Decolonization, Globalization)	WHAP::Units
+APUSH Unit 1 period and focus?	Period 1 (1491-1607) - Native societies, European exploration, Columbian Exchange	APUSH::Units
+APUSH Unit 2 period and focus?	Period 2 (1607-1754) - Colonial America, slavery begins, regional colonial differences	APUSH::Units
+APUSH Unit 3 period and focus?	Period 3 (1754-1800) - Revolution, Constitution, early republic	APUSH::Units
+APUSH Unit 4 period and focus?	Period 4 (1800-1848) - Expansion, Jacksonian democracy, reform movements	APUSH::Units
+APUSH Unit 5 period and focus?	Period 5 (1844-1877) - Civil War, Reconstruction, westward expansion	APUSH::Units
+APUSH Unit 6 period and focus?	Period 6 (1865-1898) - Gilded Age, industrialization, immigration	APUSH::Units
+APUSH Unit 7 period and focus?	Period 7 (1890-1945) - Progressivism, WWI, Great Depression, WWII	APUSH::Units
+APUSH Unit 8 period and focus?	Period 8 (1945-1980) - Cold War, civil rights, Vietnam, social change	APUSH::Units
+APUSH Unit 9 period and focus?	Period 9 (1980-present) - Conservative resurgence, technology, globalization	APUSH::Units
+APUSH exam format?	55 MCQs (40%) + 3 SAQs (20%) + 1 DBQ (25%) + 1 LEQ (15%) - SAME AS WHAP	APUSH::Exam
+How many units in APUSH?	9 units (covers 1491 to present)	APUSH::Exam
+APGOV Unit 1 name and focus?	Foundations of American Democracy - Constitution, federalism, separation of powers	APGOV::Units
+APGOV Unit 2 name and focus?	Interactions Among Branches - Congress, presidency, judiciary, checks & balances	APGOV::Units
+APGOV Unit 3 name and focus?	Civil Liberties & Civil Rights - Bill of Rights, 14th Amendment, SCOTUS cases	APGOV::Units
+APGOV Unit 4 name and focus?	American Political Ideologies & Beliefs - liberal/conservative, polling, political socialization	APGOV::Units
+APGOV Unit 5 name and focus?	Political Participation - voting, campaigns, parties, interest groups, media	APGOV::Units
+APGOV exam format?	55 MCQs (80 min, 50%) + 4 FRQs (100 min, 50%)	APGOV::Exam
+APGOV FRQ types (all 4)?	1) Concept Application 2) Quantitative Analysis 3) SCOTUS Comparison 4) Argument Essay	APGOV::Exam
+What is APGOV FRQ 1 (Concept Application)?	Apply a political concept to a real-world scenario	APGOV::Exam
+What is APGOV FRQ 2 (Quantitative Analysis)?	Interpret data/chart and explain political implications	APGOV::Exam
+What is APGOV FRQ 3 (SCOTUS Comparison)?	Compare a required case to a non-required case on similar principles	APGOV::Exam
+What is APGOV FRQ 4 (Argument Essay)?	Develop an argument using evidence (like a mini-LEQ)	APGOV::Exam
+How many units in APGOV?	5 units	APGOV::Exam
+Name 5 required APGOV SCOTUS cases	Marbury v. Madison, McCulloch v. Maryland, Brown v. Board, Gideon v. Wainwright, Citizens United v. FEC	APGOV::SCOTUS
+Name 5 more required APGOV SCOTUS cases	Schenck v. US, Engel v. Vitale, Tinker v. Des Moines, NY Times v. US, Roe v. Wade	APGOV::SCOTUS
+Name the final 5 required APGOV SCOTUS cases	Baker v. Carr, Wisconsin v. Yoder, Shaw v. Reno, US v. Lopez, McDonald v. Chicago	APGOV::SCOTUS
+Which AP Social Science courses share the same exam format?	WHAP and APUSH (both: 55 MCQ + 3 SAQ + 1 DBQ + 1 LEQ)	Comparison
+Which AP Social Science course has the simplest FRQ structure?	APHG - all 3 FRQs are the same stimulus-based type	Comparison
+Which AP Social Science course has the most varied FRQ types?	APGOV - 4 completely different FRQ types	Comparison
+How many units: APHG vs WHAP vs APUSH vs APGOV?	APHG: 7, WHAP: 9, APUSH: 9, APGOV: 5	Comparison

@@ -15,10 +15,13 @@ build/
 
 # Credentials and config with secrets
 dashboard_config.json
+austin_way_auth.txt
+austin_way_mastery.csv
 
 # Student-specific data (private)
 student_plans/
 student_plans_v3/
+adam_ss_bundle/
 PERSONALIZED_LEARNING_PLANS.md
 PERSONALIZED_LEARNING_PLANS_V2.md
 INTERVENTION_TRACKING.md
@@ -36,6 +39,11 @@ AP Practice Tests*.xlsx
 
 # Personal notes
 LS Thoughts.md
+AP_Coaching_Plan_for_*.docx
+CONSOLIDATED_AP_PLAN*.md
+tripti-plans.pdf
+adam.roush@alpha.school.ics
+current_calendar.pdf
 
 # Claude Code local settings
 .claude/
@@ -46,3 +54,9 @@ Thumbs.db
 
 # Calendar data (school-specific)
 calendar_date.csv
+austin_way_daily.csv
+practice_tests.csv
+
+# API/LLM generated data
+uworld_*.json
+ap*_practice_tests_built.json

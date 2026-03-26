@@ -1,0 +1,7 @@
+PASTE_YOUR_APH_AUTH_COOKIE_VALUE_HERE
+
+To get your cookie:
+1. Go to https://www.aphistoryforge.com/guide/
+2. Open DevTools (F12) → Application → Cookies → aphistoryforge.com
+3. Copy the value of 'aph_auth' (the long JWT token)
+4. Paste it here and save as 'austin_way_auth.txt' (remove this example text)

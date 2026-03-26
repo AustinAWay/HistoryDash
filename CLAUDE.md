@@ -36,7 +36,11 @@ DO NOT assume a fixed offset. Calculate based on the actual date:
 
 - **Schedule source of truth:** `SCHEDULE` list in `coaching_dashboard.py`
 - **Sync to markdown:** `python sync_schedule.py`
-- **Dashboard:** Flask app on `localhost:5000`
+- **Coaching Dashboard:** Flask app on `localhost:5000` - schedule, messaging, call prep
+- **AP Social Studies Dashboard:** Flask app on `localhost:5001` - Timeback/Austin Way progress tracking
+  - Source: `ap_socsci_dashboard.py`
+  - Data: pulls from Timeback learning data + Austin Way mastery + registration spreadsheet
+  - Features: XP tracking, unit completion, recommendations (MCQ/FRQ/Stay/PT)
 - **Student data:** `student_plans_v3/` (gitignored, private)
 
 ## Document Versions (IMPORTANT)
@@ -57,6 +61,16 @@ DO NOT assume a fixed offset. Calculate based on the actual date:
 Via dashboard API:
 - Questions: `http://localhost:5000/send-question/Student%20Name/week`
 - Smart send (tries Slack, falls back to email): `http://localhost:5000/send/Student%20Name/week`
+
+## Running Dashboards
+
+```bash
+# Coaching dashboard (port 5000)
+python coaching_dashboard.py
+
+# AP Social Studies dashboard (port 5001)
+python ap_socsci_dashboard.py
+```
 
 ## Git Workflow
 

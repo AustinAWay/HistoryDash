@@ -132,7 +132,7 @@ STUDENTS = {
     'Branson Pfiester': {'email': 'branson.pfiester@alpha.school', 'course': 'AP Human Geography', 'tier': 'Moderate'},
     'Saeed Tarawneh': {'email': 'said.tarawneh@alpha.school', 'course': 'AP World History', 'tier': 'Intensive'},
     'Aheli Shah': {'email': 'aheli.shah@alpha.school', 'course': 'AP Human Geography', 'tier': 'Light'},
-    'Ella Dietz': {'email': 'ella.dietz@alpha.school', 'course': 'AP World History', 'tier': 'Light'},
+    'Ella Dietz': {'email': 'ella.dietz@alpha.school', 'course': 'AP World History', 'tier': 'Standard'},
     'Stella Cole': {'email': 'stella.cole@alpha.school', 'course': 'AP World History', 'tier': 'Moderate'},
     'Erika Rigby': {'email': 'erika.rigby@alpha.school', 'course': 'AP Human Geography', 'tier': 'Maintenance'},
     'Grady Swanson': {'email': 'grady.swanson@alpha.school', 'course': 'AP Human Geography', 'tier': 'Maintenance'},
@@ -153,40 +153,134 @@ STUDENTS = {
     'Michael Cai': {'email': 'michael.cai@alpha.school', 'course': 'AP World History', 'tier': 'Maintenance'},
 }
 
+# =============================================================================
+# GUIDES - Maps students to their guides for morning reminders
+# =============================================================================
+
+GUIDES = {
+    'Gus Castillo': {'name': 'Jebin Justin', 'email': 'jebin.justin@alpha.school'},
+    'Austin Lin': {'name': 'Jebin Justin', 'email': 'jebin.justin@alpha.school'},
+    'Zayen Szpitalak': {'name': 'Jebin Justin', 'email': 'jebin.justin@alpha.school'},
+    'Cruce Saunders IV': {'name': 'Jebin Justin', 'email': 'jebin.justin@alpha.school'},
+    'Vera Li': {'name': 'Jebin Justin', 'email': 'jebin.justin@alpha.school'},
+    'Emma Cotner': {'name': 'Chloe Belvin', 'email': 'chloe.belvin@alpha.school'},
+    'Aheli Shah': {'name': 'Chloe Belvin', 'email': 'chloe.belvin@alpha.school'},
+    'Ella Dietz': {'name': 'Chloe Belvin', 'email': 'chloe.belvin@alpha.school'},
+    'Erika Rigby': {'name': 'Chloe Belvin', 'email': 'chloe.belvin@alpha.school'},
+    'Paty Margain-Junco': {'name': 'Chloe Belvin', 'email': 'chloe.belvin@alpha.school'},
+    'Stella Cole': {'name': 'Chloe Belvin', 'email': 'chloe.belvin@alpha.school'},
+    'Branson Pfiester': {'name': 'Cameron Sorsby', 'email': 'cameron.sorsby@alpha.school'},
+    'Saeed Tarawneh': {'name': 'Cameron Sorsby', 'email': 'cameron.sorsby@alpha.school'},
+    'Grady Swanson': {'name': 'Cameron Sorsby', 'email': 'cameron.sorsby@alpha.school'},
+    'Jackson Price': {'name': 'Cameron Sorsby', 'email': 'cameron.sorsby@alpha.school'},
+    'Stella Grams': {'name': 'Cameron Sorsby', 'email': 'cameron.sorsby@alpha.school'},
+    'Boris Dudarev': {'name': 'Logan Higuera', 'email': 'logan.higuera@alpha.school'},
+    'Sydney Barba': {'name': 'Logan Higuera', 'email': 'logan.higuera@alpha.school'},
+    'Luca Sanchez': {'name': 'Logan Higuera', 'email': 'logan.higuera@alpha.school'},
+    'Adrienne Laswell': {'name': 'Emily Findley', 'email': 'emily.findley@alpha.school'},
+    'Jessica Owenby': {'name': 'Emily Findley', 'email': 'emily.findley@alpha.school'},
+    'Kavin Lingham': {'name': 'Emily Findley', 'email': 'emily.findley@alpha.school'},
+    'Jacob Kuchinsky': {'name': 'Emily Findley', 'email': 'emily.findley@alpha.school'},
+    'Ali Romman': {'name': 'Emily Findley', 'email': 'emily.findley@alpha.school'},
+    'Benny Valles': {'name': 'Emily Findley', 'email': 'emily.findley@alpha.school'},
+    'Emily Smith': {'name': 'Emily Findley', 'email': 'emily.findley@alpha.school'},
+    'Michael Cai': {'name': 'Emily Findley', 'email': 'emily.findley@alpha.school'},
+}
+
+# =============================================================================
+# STUDENT UNIT PROGRESS - Used to check question sequencing
+# Units use CED numbering (APHG: 1-7, World: 1-9, APUSH: Periods 1-9)
+# =============================================================================
+
+STUDENT_UNIT_PROGRESS = {
+    # APHG students - track completed units
+    'Gus Castillo': {'completed': [1, 2, 3], 'not_started': [4, 5, 6, 7]},
+    'Branson Pfiester': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Erika Rigby': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Aheli Shah': {'completed': [1, 2, 3, 4, 5, 6], 'not_started': [7]},
+    'Sydney Barba': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Boris Dudarev': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Zayen Szpitalak': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Grady Swanson': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Adrienne Laswell': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Austin Lin': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Jessica Owenby': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Jacob Kuchinsky': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Luca Sanchez': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Ali Romman': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Benny Valles': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    'Vera Li': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': []},
+    # World History students
+    'Emma Cotner': {'completed': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'not_started': []},
+    'Jackson Price': {'completed': [1, 2], 'not_started': [3, 4, 5, 6, 7, 8, 9]},
+    'Ella Dietz': {'completed': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'not_started': []},
+    'Stella Cole': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': [8, 9]},
+    'Saeed Tarawneh': {'completed': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'not_started': []},
+    'Kavin Lingham': {'completed': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'not_started': []},
+    'Stella Grams': {'completed': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'not_started': []},
+    'Michael Cai': {'completed': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'not_started': []},
+    # APUSH students
+    'Cruce Saunders IV': {'completed': [1, 2, 3, 4, 5, 6, 7], 'not_started': [8, 9]},
+    'Paty Margain-Junco': {'completed': [1, 2, 3, 4, 5, 6, 7, 8, 9], 'not_started': []},
+    # Gov student
+    'Emily Smith': {'completed': [1, 2, 3, 4, 5], 'not_started': []},
+}
+
+# Keywords that indicate specific unit content (for sequence checking)
+UNIT_KEYWORDS = {
+    'AP Human Geography': {
+        4: ['devolution', 'federal system', 'unitary system', 'sovereignty', 'supranational', 'boundary dispute'],
+        5: ['von thunen', 'agricultural land use', 'green revolution', 'agribusiness'],
+        6: ['burgess', 'hoyt', 'harris ullman', 'concentric zone', 'sector model', 'multiple nuclei', 'gentrification'],
+        7: ['rostow', 'wallerstein', 'core periphery', 'deindustrialization', 'quaternary', 'quinary', 'sez']
+    },
+    'AP World History': {
+        3: ['ottoman', 'safavid', 'mughal', 'qing dynasty', 'russian empire', 'gunpowder empire'],
+        4: ['columbian exchange', 'atlantic slave', 'maritime empire', 'conquistador'],
+        5: ['enlightenment', 'french revolution', 'haitian revolution', 'latin american independence'],
+        6: ['industrial revolution', 'new imperialism', 'scramble for africa'],
+        7: ['world war i', 'wwi', 'world war ii', 'wwii', 'fascism', 'total war'],
+        8: ['cold war', 'decolonization', 'non-aligned', 'proxy war'],
+        9: ['globalization', 'global economy', 'climate change']
+    },
+    'AP US History': {
+        8: ['cold war', 'containment', 'mccarthyism', 'vietnam', 'civil rights movement'],
+        9: ['reaganomics', 'end of cold war', 'globalization', '9/11', 'war on terror']
+    }
+}
+
 # SCHEDULE is the source of truth for coaching calls.
 # After editing, run: python sync_schedule.py
 # This keeps MASTER_COACHING_SCHEDULE.md in sync.
 SCHEDULE = [
-    {'date': (2026, 3, 12), 'time': '09:00', 'student': 'Gus Castillo', 'week': 1},
-    {'date': (2026, 3, 17), 'time': '08:30', 'student': 'Emma Cotner', 'week': 1},
     {'date': (2026, 3, 11), 'time': '09:45', 'student': 'Jackson Price', 'week': 1},
     {'date': (2026, 3, 11), 'time': '08:35', 'student': 'Boris Dudarev', 'week': 1},
     {'date': (2026, 3, 11), 'time': '09:05', 'student': 'Sydney Barba', 'week': 1},
-    {'date': (2026, 3, 12), 'time': '08:00', 'student': 'Saeed Tarawneh', 'week': 1},
+    {'date': (2026, 3, 12), 'time': '09:45', 'student': 'Saeed Tarawneh', 'week': 1},
     {'date': (2026, 3, 16), 'time': '09:25', 'student': 'Aheli Shah', 'week': 1},
-    {'date': (2026, 3, 17), 'time': '10:00', 'student': 'Ella Dietz', 'week': 1},
+    {'date': (2026, 3, 17), 'time': '10:05', 'student': 'Ella Dietz', 'week': 1},
     {'date': (2026, 3, 17), 'time': '08:00', 'student': 'Stella Cole', 'week': 1},
     {'date': (2026, 3, 17), 'time': '08:45', 'student': 'Erika Rigby', 'week': 1},
-    {'date': (2026, 3, 16), 'time': '09:00', 'student': 'Grady Swanson', 'week': 1},
+    {'date': (2026, 3, 16), 'time': '10:00', 'student': 'Grady Swanson', 'week': 1},
     {'date': (2026, 3, 16), 'time': '08:50', 'student': 'Zayen Szpitalak', 'week': 1},
-    {'date': (2026, 3, 18), 'time': '09:40', 'student': 'Branson Pfiester', 'week': 1},
     {'date': (2026, 3, 19), 'time': '08:20', 'student': 'Gus Castillo', 'week': 2},
+    {'date': (2026, 3, 19), 'time': '09:00', 'student': 'Austin Lin', 'week': 1},
     {'date': (2026, 3, 19), 'time': '09:35', 'student': 'Emma Cotner', 'week': 2},
-    {'date': (2026, 3, 20), 'time': '08:00', 'student': 'Saeed Tarawneh', 'week': 2},
-    {'date': (2026, 3, 20), 'time': '08:35', 'student': 'Adrienne Laswell', 'week': 1},
-    {'date': (2026, 3, 20), 'time': '09:05', 'student': 'Austin Lin', 'week': 1},
+    {'date': (2026, 3, 20), 'time': '10:00', 'student': 'Saeed Tarawneh', 'week': 2},
+    {'date': (2026, 3, 20), 'time': '10:35', 'student': 'Adrienne Laswell', 'week': 1},
+    {'date': (2026, 3, 23), 'time': '10:30', 'student': 'Branson Pfiester', 'week': 1},
     {'date': (2026, 3, 25), 'time': '08:00', 'student': 'Boris Dudarev', 'week': 2},
     {'date': (2026, 3, 25), 'time': '08:35', 'student': 'Sydney Barba', 'week': 2},
     {'date': (2026, 3, 26), 'time': '08:20', 'student': 'Gus Castillo', 'week': 3},
+    {'date': (2026, 3, 26), 'time': '09:00', 'student': 'Ella Dietz', 'week': 2},
     {'date': (2026, 3, 26), 'time': '09:35', 'student': 'Emma Cotner', 'week': 3},
     {'date': (2026, 3, 27), 'time': '08:00', 'student': 'Saeed Tarawneh', 'week': 3},
     {'date': (2026, 3, 27), 'time': '08:35', 'student': 'Jessica Owenby', 'week': 1},
     {'date': (2026, 3, 27), 'time': '09:05', 'student': 'Cruce Saunders IV', 'week': 1},
     {'date': (2026, 4, 1), 'time': '08:00', 'student': 'Zayen Szpitalak', 'week': 2},
     {'date': (2026, 4, 1), 'time': '08:35', 'student': 'Stella Cole', 'week': 2},
-    {'date': (2026, 4, 1), 'time': '09:10', 'student': 'Branson Pfiester', 'week': 2},
-    {'date': (2026, 4, 2), 'time': '08:20', 'student': 'Gus Castillo', 'week': 4},
-    {'date': (2026, 4, 2), 'time': '09:35', 'student': 'Emma Cotner', 'week': 4},
+    {'date': (2026, 3, 31), 'time': '08:20', 'student': 'Gus Castillo', 'week': 4},
+    {'date': (2026, 3, 31), 'time': '09:35', 'student': 'Emma Cotner', 'week': 4},
     {'date': (2026, 4, 3), 'time': '08:00', 'student': 'Saeed Tarawneh', 'week': 4},
     {'date': (2026, 4, 3), 'time': '08:35', 'student': 'Kavin Lingham', 'week': 1},
     {'date': (2026, 4, 3), 'time': '09:05', 'student': 'Stella Grams', 'week': 1},
@@ -194,25 +288,25 @@ SCHEDULE = [
     {'date': (2026, 4, 8), 'time': '08:00', 'student': 'Jacob Kuchinsky', 'week': 1},
     {'date': (2026, 4, 8), 'time': '08:35', 'student': 'Luca Sanchez', 'week': 1},
     {'date': (2026, 4, 8), 'time': '09:05', 'student': 'Boris Dudarev', 'week': 3},
-    {'date': (2026, 4, 9), 'time': '08:20', 'student': 'Gus Castillo', 'week': 5},
-    {'date': (2026, 4, 9), 'time': '08:35', 'student': 'Aheli Shah', 'week': 2},
-    {'date': (2026, 4, 9), 'time': '09:05', 'student': 'Ella Dietz', 'week': 2},
-    {'date': (2026, 4, 10), 'time': '08:00', 'student': 'Jackson Price', 'week': 2},
-    {'date': (2026, 4, 10), 'time': '08:35', 'student': 'Ali Romman', 'week': 1},
-    {'date': (2026, 4, 10), 'time': '09:05', 'student': 'Benny Valles', 'week': 1},
+    {'date': (2026, 4, 6), 'time': '08:20', 'student': 'Gus Castillo', 'week': 5},
+    {'date': (2026, 4, 6), 'time': '09:50', 'student': 'Aheli Shah', 'week': 2},
+    {'date': (2026, 4, 6), 'time': '09:05', 'student': 'Ella Dietz', 'week': 3},
+    {'date': (2026, 4, 7), 'time': '08:45', 'student': 'Jackson Price', 'week': 2},
+    {'date': (2026, 4, 7), 'time': '09:20', 'student': 'Ali Romman', 'week': 1},
+    {'date': (2026, 4, 7), 'time': '10:00', 'student': 'Benny Valles', 'week': 1},
     {'date': (2026, 4, 15), 'time': '08:00', 'student': 'Zayen Szpitalak', 'week': 3},
     {'date': (2026, 4, 15), 'time': '08:35', 'student': 'Stella Cole', 'week': 3},
-    {'date': (2026, 4, 16), 'time': '08:20', 'student': 'Gus Castillo', 'week': 6},
-    {'date': (2026, 4, 16), 'time': '08:35', 'student': 'Branson Pfiester', 'week': 3},
-    {'date': (2026, 4, 16), 'time': '09:35', 'student': 'Emma Cotner', 'week': 5},
-    {'date': (2026, 4, 17), 'time': '08:00', 'student': 'Saeed Tarawneh', 'week': 5},
-    {'date': (2026, 4, 17), 'time': '08:35', 'student': 'Vera Li', 'week': 1},
-    {'date': (2026, 4, 17), 'time': '09:05', 'student': 'Emily Smith', 'week': 1},
+    {'date': (2026, 4, 15), 'time': '09:15', 'student': 'Ella Dietz', 'week': 4},
+    {'date': (2026, 4, 13), 'time': '08:20', 'student': 'Gus Castillo', 'week': 6},
+    {'date': (2026, 4, 13), 'time': '08:50', 'student': 'Branson Pfiester', 'week': 3},
+    {'date': (2026, 4, 13), 'time': '09:35', 'student': 'Emma Cotner', 'week': 5},
+    {'date': (2026, 4, 14), 'time': '08:00', 'student': 'Saeed Tarawneh', 'week': 5},
+    {'date': (2026, 4, 14), 'time': '08:35', 'student': 'Vera Li', 'week': 1},
+    {'date': (2026, 4, 14), 'time': '09:05', 'student': 'Emily Smith', 'week': 1},
     {'date': (2026, 4, 28), 'time': '08:00', 'student': 'Stella Cole', 'week': 4},
     {'date': (2026, 4, 29), 'time': '08:00', 'student': 'Boris Dudarev', 'week': 4},
     {'date': (2026, 4, 29), 'time': '08:35', 'student': 'Sydney Barba', 'week': 4},
     {'date': (2026, 4, 29), 'time': '09:05', 'student': 'Zayen Szpitalak', 'week': 4},
-    {'date': (2026, 4, 29), 'time': '09:40', 'student': 'Branson Pfiester', 'week': 4},
     {'date': (2026, 4, 30), 'time': '08:20', 'student': 'Gus Castillo', 'week': 7},
     {'date': (2026, 4, 30), 'time': '09:35', 'student': 'Emma Cotner', 'week': 6},
     {'date': (2026, 5, 1), 'time': '08:00', 'student': 'Saeed Tarawneh', 'week': 6},
@@ -295,6 +389,42 @@ def get_student_plan_content(student_name):
         with open(filepath, 'r', encoding='utf-8') as f:
             return f.read()
     return None
+
+def check_question_sequence(student_name, week):
+    """
+    Check if a question file contains content from units the student hasn't completed.
+    Returns a list of warning strings (empty if no issues).
+    """
+    warnings = []
+
+    # Get student info
+    info = STUDENTS.get(student_name, {})
+    course = info.get('course', '')
+    progress = STUDENT_UNIT_PROGRESS.get(student_name, {})
+    not_started = progress.get('not_started', [])
+
+    if not not_started:
+        return []  # Student has completed all units
+
+    # Get question file content
+    content, _ = get_question_file_content(student_name, week)
+    if not content:
+        return []  # No question file to check
+
+    content_lower = content.lower()
+
+    # Get keywords for this course
+    course_keywords = UNIT_KEYWORDS.get(course, {})
+
+    # Check for keywords from units the student hasn't started
+    for unit in not_started:
+        keywords = course_keywords.get(unit, [])
+        for keyword in keywords:
+            if keyword.lower() in content_lower:
+                warnings.append(f"Unit {unit} content detected ('{keyword}') - student hasn't started this unit")
+                break  # Only one warning per unit
+
+    return warnings
 
 def get_student_plan_path(student_name):
     filename = student_name.replace(" ", "_") + ".md"
@@ -796,6 +926,9 @@ def send_question_smart(student_name, week):
 # AUTO-SEND SCHEDULER
 # =============================================================================
 
+# Set to False to disable all automatic communications (manual sends still work)
+AUTO_COMMS_ENABLED = False
+
 import time
 from threading import Thread, Event
 
@@ -1269,30 +1402,157 @@ def catchup_check():
         })
         save_status(status)
 
+def send_morning_reminders():
+    """Send morning reminder to students and guides for today's calls at 07:45 CT."""
+    today = datetime.now(STUDENT_TZ).date()
+    today_tuple = (today.year, today.month, today.day)
+
+    # Find today's calls
+    todays_calls = [s for s in SCHEDULE if s['date'] == today_tuple]
+
+    if not todays_calls:
+        log_scheduler("Morning reminders: No calls today")
+        return
+
+    log_scheduler(f"Morning reminders: {len(todays_calls)} calls today")
+
+    for call in todays_calls:
+        student_name = call['student']
+        call_time = call['time']
+        student_info = STUDENTS.get(student_name, {})
+        guide_info = GUIDES.get(student_name, {})
+        course = student_info.get('course', 'AP Course')
+
+        # Message for student
+        student_msg = (
+            f"Good morning! Just a reminder that you have an AP Coaching call with Adam today at *{call_time} CT*.\n\n"
+            f"We'll be focusing on *{course}* — come ready to discuss your progress and any questions you have.\n\n"
+            f"See you soon!"
+        )
+
+        # Message for guide
+        guide_msg = (
+            f"Good morning! Just a heads up that *{student_name}* has an AP Coaching call with Adam today at *{call_time} CT* for *{course}*."
+        )
+
+        # Send to student
+        student_email = student_info.get('email')
+        if student_email:
+            success, msg = send_slack_dm(student_email, student_msg)
+            log_scheduler(f"  {student_name}: Student reminder {'sent' if success else 'FAILED'}")
+
+        # Send to guide
+        guide_email = guide_info.get('email')
+        if guide_email:
+            success, msg = send_slack_dm(guide_email, guide_msg)
+            log_scheduler(f"  {student_name}: Guide ({guide_info.get('name')}) reminder {'sent' if success else 'FAILED'}")
+
+def send_missed_call_message(student_name, missed_week):
+    """Send a 'sorry I missed you' message when a student doesn't show up."""
+    student_info = STUDENTS.get(student_name, {})
+    guide_info = GUIDES.get(student_name, {})
+    course = student_info.get('course', 'AP Course')
+    first_name = student_name.split()[0]
+
+    # Find their next call after this missed one
+    next_call = None
+    for c in sorted(SCHEDULE, key=lambda x: (x['date'], x['time'])):
+        if c['student'] == student_name and c['week'] > missed_week:
+            next_call = c
+            break
+
+    # Build the message for student
+    if next_call:
+        next_date = datetime(*next_call['date'])
+        next_date_str = next_date.strftime('%A %B %d')
+        next_time = next_call['time']
+        student_msg = (
+            f"Hey {first_name}! Sorry I missed you at our coaching call today.\n\n"
+            f"I know things get busy — no worries at all. Let's make sure we connect at our next session on "
+            f"*{next_date_str} at {next_time} CT*.\n\n"
+            f"In the meantime, keep working on your {course} prep and let me know if you have any questions!\n\n"
+            f"— Adam"
+        )
+        guide_msg = (
+            f"Hey! Just a heads up that *{student_name}* missed their AP Coaching call today. "
+            f"I've sent them a message — their next session is *{next_date_str} at {next_time} CT*."
+        )
+    else:
+        student_msg = (
+            f"Hey {first_name}! Sorry I missed you at our coaching call today.\n\n"
+            f"I know things get busy — no worries at all. That was our last scheduled session, "
+            f"but reach out if you'd like to add another call before the exam!\n\n"
+            f"Keep working on your {course} prep and let me know if you have any questions!\n\n"
+            f"— Adam"
+        )
+        guide_msg = (
+            f"Hey! Just a heads up that *{student_name}* missed their AP Coaching call today (their last scheduled session). "
+            f"I've sent them a message encouraging them to reach out if they want to reschedule."
+        )
+
+    results = {'student_sent': False, 'guide_sent': False}
+
+    # Send to student
+    student_email = student_info.get('email')
+    if student_email:
+        success, msg = send_slack_dm(student_email, student_msg)
+        results['student_sent'] = success
+        results['student_error'] = None if success else msg
+
+    # Send to guide
+    guide_email = guide_info.get('email')
+    if guide_email:
+        success, msg = send_slack_dm(guide_email, guide_msg)
+        results['guide_sent'] = success
+        results['guide_error'] = None if success else msg
+
+    return results
+
 def scheduler_loop():
     """Background scheduler that runs periodically."""
     log_scheduler("Scheduler started")
 
-    # Run catch-up immediately on start
-    try:
-        catchup_check()
-    except Exception as e:
-        log_scheduler(f"Catch-up error: {e}")
+    if not AUTO_COMMS_ENABLED:
+        log_scheduler("AUTO-COMMS DISABLED - scheduler will not send automatic messages")
+
+    # Run catch-up immediately on start (only if auto-comms enabled)
+    if AUTO_COMMS_ENABLED:
+        try:
+            catchup_check()
+        except Exception as e:
+            log_scheduler(f"Catch-up error: {e}")
 
     last_daily_check = None
+    last_morning_reminder = None
 
     while not scheduler_stop.is_set():
-        now = datetime.now()
+        # Skip all auto-sends if disabled (manual sends still work)
+        if not AUTO_COMMS_ENABLED:
+            scheduler_stop.wait(600)
+            continue
+
+        now = datetime.now(STUDENT_TZ)  # Use Central time for all checks
         today_str = now.strftime('%Y-%m-%d')
+        hour = now.hour
+        minute = now.minute
+
+        # Morning reminders at 07:45 CT (or catch up if missed, until 08:30)
+        if last_morning_reminder != today_str:
+            if (hour == 7 and minute >= 45) or (hour == 8 and minute < 30):
+                try:
+                    log_scheduler(f"Morning reminders check ({now.strftime('%H:%M')} CT)")
+                    send_morning_reminders()
+                    last_morning_reminder = today_str
+                except Exception as e:
+                    log_scheduler(f"Morning reminder error: {e}")
 
         # Run daily check once per day (around 8 AM for next-day questions)
         # Gives students all day + evening to work on them
         if last_daily_check != today_str:
-            hour = now.hour
             # Run at 8 AM or later (catch up if we missed it)
             if hour >= 8:
                 try:
-                    log_scheduler(f"Daily auto-send check ({now.strftime('%H:%M')})")
+                    log_scheduler(f"Daily auto-send check ({now.strftime('%H:%M')} CT)")
                     auto_send_questions_for_tomorrow()
 
                     # Monday check for weekly reminders + Branson FRQs
@@ -1304,8 +1564,8 @@ def scheduler_loop():
                 except Exception as e:
                     log_scheduler(f"Daily check error: {e}")
 
-        # Sleep for 30 minutes between checks
-        scheduler_stop.wait(1800)
+        # Sleep for 10 minutes between checks (more frequent for morning timing)
+        scheduler_stop.wait(600)
 
     log_scheduler("Scheduler stopped")
 
@@ -1568,6 +1828,9 @@ DASHBOARD_HTML = """
                             <h3>{{ call.student }}</h3>
                             <div class="course">{{ call.info.course }} - Week {{ call.week }}</div>
                             <span class="tier {{ call.info.tier }}">{{ call.info.tier }}</span>
+                            {% if call.sequence_warnings %}
+                            <span style="background: #fef3c7; color: #b45309; padding: 2px 8px; border-radius: 4px; font-size: 0.75em; margin-left: 8px;" title="{{ call.sequence_warnings|join('; ') }}">⚠ Out-of-sequence</span>
+                            {% endif %}
                         </div>
                         <div class="call-actions">
                             <a href="/student/{{ call.student|urlencode }}" class="btn btn-secondary">View Plan</a>
@@ -1598,6 +1861,9 @@ DASHBOARD_HTML = """
                         <h3>{{ call.student }}</h3>
                         <div class="course">{{ call.info.course }} - Week {{ call.week }}</div>
                         <span class="tier {{ call.info.tier }}">{{ call.info.tier }}</span>
+                        {% if call.sequence_warnings %}
+                        <span style="background: #fef3c7; color: #b45309; padding: 2px 6px; border-radius: 4px; font-size: 0.7em; display: block; margin-top: 4px;" title="{{ call.sequence_warnings|join('; ') }}">⚠ Out-of-seq</span>
+                        {% endif %}
                     </div>
                     <div class="call-actions">
                         <a href="/student/{{ call.student|urlencode }}" class="btn btn-secondary">Plan</a>
@@ -1785,6 +2051,10 @@ QUESTIONS_HTML = """
         .md-content pre { background: #f5f5f5; padding: 15px; border-radius: 8px; overflow-x: auto; }
         .md-content input[type="checkbox"] { margin-right: 8px; }
         .error { color: #dc2626; background: #fee2e2; padding: 20px; border-radius: 8px; }
+        .warning { color: #b45309; background: #fef3c7; padding: 15px 20px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #f59e0b; }
+        .warning h3 { margin: 0 0 10px 0; color: #92400e; font-size: 1em; }
+        .warning ul { margin: 0; padding-left: 20px; }
+        .warning li { margin: 4px 0; }
     </style>
 </head>
 <body>
@@ -1792,6 +2062,16 @@ QUESTIONS_HTML = """
         <div class="back"><a href="/">← Back to Dashboard</a></div>
         <div class="card">
             <h1>{{ student_name }} - Week {{ week }}</h1>
+            {% if sequence_warnings %}
+            <div class="warning">
+                <h3>Out-of-Sequence Warning</h3>
+                <ul>
+                {% for warn in sequence_warnings %}
+                    <li>{{ warn }}</li>
+                {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
             {% if content %}
             <div class="md-content">{{ content|safe }}</div>
             {% else %}
@@ -2272,11 +2552,21 @@ def dashboard():
     recent_messages = [m for m in status.get('sent_messages', [])
                        if m.get('time', '').startswith(today_str)][-20:]
 
+    # Get calls and check for sequence warnings
+    calls_today = get_calls_today()
+    calls_week = get_calls_this_week()
+
+    # Add sequence warnings to each call
+    for call in calls_today:
+        call['sequence_warnings'] = check_question_sequence(call['student'], call['week'])
+    for call in calls_week:
+        call['sequence_warnings'] = check_question_sequence(call['student'], call['week'])
+
     return render_template_string(DASHBOARD_HTML,
         today=today,
         london_time=get_london_now().strftime('%H:%M %Z'),
-        calls_today=get_calls_today(),
-        calls_week=get_calls_this_week(),
+        calls_today=calls_today,
+        calls_week=calls_week,
         slack_connected=bool(slack_client),
         email_configured=is_email_configured(),
         messages_sent_today=len(recent_messages),
@@ -2328,11 +2618,15 @@ def view_questions(student_name, week):
     else:
         content = None
 
+    # Check for out-of-sequence content
+    sequence_warnings = check_question_sequence(student_name, week)
+
     return render_template_string(QUESTIONS_HTML,
         student_name=student_name,
         week=week,
         content=content,
-        filename=filename
+        filename=filename,
+        sequence_warnings=sequence_warnings
     )
 
 @app.route('/send-question/<student_name>/<int:week>')
@@ -2419,6 +2713,7 @@ def scheduler_status():
         .btn-secondary { background: #6b7280; }
         .actions { margin-bottom: 20px; }
         .status { padding: 10px; background: #d1fae5; border-radius: 6px; margin-bottom: 20px; color: #059669; }
+        .status-disabled { background: #fef3c7; color: #b45309; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -2426,10 +2721,14 @@ def scheduler_status():
         <div class="back"><a href="/">← Back to Dashboard</a></div>
         <div class="card">
             <h1>Scheduler Status</h1>
+            {% if not auto_comms_enabled %}
+            <div class="status status-disabled">AUTO-COMMS DISABLED - Automatic messages will not be sent. Manual sends still work.</div>
+            {% endif %}
             <div class="status">Auto-refresh every 30 seconds</div>
             <div class="actions">
                 <a href="/send-weekly" class="btn">Send Weekly Now</a>
                 <a href="/send-questions" class="btn">Send Tomorrow's Questions Now</a>
+                <a href="/scheduler/morning-reminders" class="btn" style="background:#28a745;">Send Morning Reminders Now</a>
                 <a href="/scheduler/catchup" class="btn btn-secondary">Run Catch-up Check</a>
             </div>
             <h2>Recent Activity</h2>
@@ -2446,12 +2745,164 @@ def scheduler_status():
     </div>
 </body>
 </html>
-    """, log=scheduler_log)
+    """, log=scheduler_log, auto_comms_enabled=AUTO_COMMS_ENABLED)
 
 @app.route('/scheduler/catchup')
 def run_catchup():
     catchup_check()
     return redirect('/scheduler')
+
+@app.route('/scheduler/morning-reminders')
+def manual_morning_reminders():
+    """Manually trigger morning reminders and show results."""
+    today = datetime.now(STUDENT_TZ).date()
+    today_tuple = (today.year, today.month, today.day)
+
+    todays_calls = [s for s in SCHEDULE if s['date'] == today_tuple]
+
+    results = []
+
+    if not todays_calls:
+        return render_template_string("""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morning Reminders</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px; max-width: 800px; margin: 0 auto; }
+        .back { margin-bottom: 20px; }
+        .back a { color: #0066cc; text-decoration: none; }
+        .message { background: #f5f5f5; padding: 20px; border-radius: 8px; }
+    </style>
+</head>
+<body>
+    <div class="back"><a href="/scheduler">← Back to Scheduler</a></div>
+    <h1>Morning Reminders</h1>
+    <div class="message">No calls scheduled for today. No reminders to send.</div>
+</body>
+</html>
+        """)
+
+    for call in todays_calls:
+        student_name = call['student']
+        call_time = call['time']
+        student_info = STUDENTS.get(student_name, {})
+        guide_info = GUIDES.get(student_name, {})
+        course = student_info.get('course', 'AP Course')
+
+        result = {
+            'student': student_name,
+            'time': call_time,
+            'course': course,
+            'guide_name': guide_info.get('name', 'N/A'),
+            'student_sent': False,
+            'student_error': None,
+            'guide_sent': False,
+            'guide_error': None
+        }
+
+        # Message for student
+        student_msg = (
+            f"Good morning! Just a reminder that you have an AP Coaching call with Adam today at *{call_time} CT*.\n\n"
+            f"We'll be focusing on *{course}* — come ready to discuss your progress and any questions you have.\n\n"
+            f"See you soon!"
+        )
+
+        # Message for guide
+        guide_msg = (
+            f"Good morning! Just a heads up that *{student_name}* has an AP Coaching call with Adam today at *{call_time} CT* for *{course}*."
+        )
+
+        # Send to student
+        student_email = student_info.get('email')
+        if student_email:
+            success, msg = send_slack_dm(student_email, student_msg)
+            result['student_sent'] = success
+            result['student_error'] = None if success else msg
+        else:
+            result['student_error'] = 'No email'
+
+        # Send to guide
+        guide_email = guide_info.get('email')
+        if guide_email:
+            success, msg = send_slack_dm(guide_email, guide_msg)
+            result['guide_sent'] = success
+            result['guide_error'] = None if success else msg
+        else:
+            result['guide_error'] = 'No email'
+
+        results.append(result)
+        log_scheduler(f"Manual reminder: {student_name} - Student: {'OK' if result['student_sent'] else 'FAILED'}, Guide: {'OK' if result['guide_sent'] else 'FAILED'}")
+
+    return render_template_string("""
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Morning Reminders - Results</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; padding: 40px; max-width: 900px; margin: 0 auto; }
+        .back { margin-bottom: 20px; }
+        .back a { color: #0066cc; text-decoration: none; }
+        h1 { margin-bottom: 10px; }
+        .subtitle { color: #666; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background: #f5f5f5; font-weight: 600; }
+        .success { color: #22863a; font-weight: 600; }
+        .failure { color: #cb2431; font-weight: 600; }
+        .summary { margin-top: 30px; padding: 20px; background: #f0f9ff; border-radius: 8px; }
+        .summary.all-good { background: #dcffe4; }
+        .summary.has-errors { background: #ffeef0; }
+    </style>
+</head>
+<body>
+    <div class="back"><a href="/scheduler">← Back to Scheduler</a></div>
+    <h1>Morning Reminders Sent</h1>
+    <p class="subtitle">{{ results|length }} call(s) today — reminders sent to students and guides</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Time (CT)</th>
+                <th>Course</th>
+                <th>Student Notified</th>
+                <th>Guide Notified</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for r in results %}
+            <tr>
+                <td><strong>{{ r.student }}</strong></td>
+                <td>{{ r.time }}</td>
+                <td>{{ r.course }}</td>
+                <td class="{{ 'success' if r.student_sent else 'failure' }}">
+                    {{ '✓ Sent' if r.student_sent else '✗ ' + (r.student_error or 'Failed') }}
+                </td>
+                <td class="{{ 'success' if r.guide_sent else 'failure' }}">
+                    {{ '✓ ' + r.guide_name if r.guide_sent else '✗ ' + (r.guide_error or 'Failed') }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% set student_ok = results|selectattr('student_sent')|list|length %}
+    {% set guide_ok = results|selectattr('guide_sent')|list|length %}
+    {% set total = results|length %}
+    {% set all_good = (student_ok == total and guide_ok == total) %}
+
+    <div class="summary {{ 'all-good' if all_good else 'has-errors' }}">
+        <strong>Summary:</strong>
+        {{ student_ok }}/{{ total }} student notifications sent,
+        {{ guide_ok }}/{{ total }} guide notifications sent.
+        {% if all_good %}
+        <br>All reminders delivered successfully!
+        {% endif %}
+    </div>
+</body>
+</html>
+    """, results=results)
 
 @app.route('/record/<student_name>/<int:week>')
 def record_call_page(student_name, week):
@@ -2499,6 +2950,13 @@ def save_record(student_name, week):
     success, msg = save_call_record(student_name, call_date, week, attended, recording_url)
 
     if success:
+        # If student didn't attend, send them a "sorry I missed you" message
+        if not attended:
+            missed_results = send_missed_call_message(student_name, week)
+            if missed_results['student_sent']:
+                return redirect(f'/student/{student_name}?message=Record+saved.+Sent+missed+call+message+to+{student_name.replace(" ", "+")}')
+            else:
+                return redirect(f'/student/{student_name}?message=Record+saved.+Could+not+send+missed+call+message')
         return redirect(f'/student/{student_name}?message=Record+saved')
     else:
         return redirect(f'/record/{student_name}/{week}?error={msg}')
