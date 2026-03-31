@@ -74,6 +74,13 @@ def load_env_from_json():
 
 load_env_from_json()
 
+# Direct database refresh (replaces cookie-based scraper when DB creds available)
+try:
+    from db_refresh import get_connection, discover_schema, refresh_mastery_from_db, get_db_config, get_data_staleness
+    DB_REFRESH_AVAILABLE = True
+except ImportError:
+    DB_REFRESH_AVAILABLE = False
+
 app = Flask(__name__)
 BASE_DIR = Path(__file__).parent
 DATA_DIR = BASE_DIR / 'adam_ss_bundle'
@@ -5126,8 +5133,25 @@ COACHING_HTML = '''
 '''
 
 
+AUTO_REFRESH_HOURS = 4
+
+def _auto_refresh_if_stale():
+    """Silently refresh mastery data from DB if it's older than AUTO_REFRESH_HOURS."""
+    if not DB_REFRESH_AVAILABLE or not get_db_config():
+        return
+    try:
+        age = get_data_staleness()
+        if age is None or age > AUTO_REFRESH_HOURS:
+            print(f"[auto-refresh] mastery data is {round(age, 1) if age else 'missing'}h old — refreshing from DB...")
+            result = refresh_mastery_from_db()
+            print(f"[auto-refresh] {result['message']}")
+    except Exception as e:
+        pass  # silently skip if DB is unavailable
+
+
 @app.route('/')
 def dashboard():
+    _auto_refresh_if_stale()
     data = load_all_data()
     students = build_unified_table(data)
 
@@ -6539,8 +6563,13 @@ REFRESH_HTML = '''
         <p style="margin-bottom: 15px;">Click below to pull fresh data from external systems.</p>
 
         <a href="/refresh/all" class="btn">Refresh All Data</a>
+        <a href="/refresh/database" class="btn" style="background:#22c55e;">Database Refresh</a>
         <a href="/refresh/austin-way" class="btn btn-secondary">Austin Way Only</a>
         <a href="/refresh/timeback" class="btn btn-secondary">Timeback Only</a>
+
+        <div class="note" style="margin-top: 12px; padding: 8px; background: #1a2e1a; border-radius: 4px;">
+            <strong style="color: #22c55e;">Database Refresh</strong> pulls directly from the production DB — no cookie needed, merges with existing data (never deletes rows). Auto-refreshes every 4h when DB is configured.
+        </div>
 
         <div class="note">
             <strong>Requirements:</strong><br>
@@ -6590,25 +6619,37 @@ def backup_data_files():
 
 @app.route('/refresh')
 def refresh():
-    """One-click refresh: backup, refresh all, redirect to dashboard on success."""
-    # Backup first
+    """One-click refresh: backup, try DB first, fall back to API scraper."""
     backup_data_files()
 
-    # Refresh both sources
-    aw_result = refresh_austin_way()
+    # Try direct DB refresh first (no cookie needed, always works)
+    db_result = {"success": False, "message": "DB module not loaded"}
+    if DB_REFRESH_AVAILABLE and get_db_config():
+        db_result = refresh_mastery_from_db()
+
+    # If DB succeeded, use it for Austin Way; otherwise fall back to scraper
+    if db_result["success"]:
+        aw_result = db_result
+    else:
+        aw_result = refresh_austin_way()
+
     tb_result = refresh_timeback()
 
-    # If both succeeded, redirect to dashboard
     if aw_result["success"] and tb_result["success"]:
         return redirect('/')
 
-    # If there's an error, show the error page
     results = {
         "austin_way": aw_result,
         "timeback": tb_result,
         "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
     }
     return render_template_string(REFRESH_ERROR_HTML, results=results)
+
+
+@app.route('/refresh/all')
+def refresh_all_route():
+    """Alias for /refresh."""
+    return redirect('/refresh')
 
 
 REFRESH_ERROR_HTML = '''
@@ -6738,6 +6779,75 @@ def save_cookie_route():
             cookie = cookie[9:]
         AUSTIN_WAY_AUTH_FILE.write_text(cookie)
     return redirect('/refresh')
+
+
+@app.route('/refresh/database')
+def refresh_database_route():
+    """Refresh mastery data directly from production DB (merges, never deletes)."""
+    if not DB_REFRESH_AVAILABLE:
+        return jsonify({"success": False, "message": "db_refresh module not available — pip install psycopg2-binary"}), 500
+    if not get_db_config():
+        return jsonify({"success": False, "message": "DB_HOST env var not set"}), 500
+
+    backup_data_files()
+    result = refresh_mastery_from_db()
+
+    if result["success"]:
+        return redirect('/')
+
+    results = {
+        "austin_way": result,
+        "timeback": {"success": True, "message": "Not requested", "rows": 0},
+        "timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    }
+    return render_template_string(REFRESH_ERROR_HTML, results=results)
+
+
+@app.route('/db/schema')
+def db_schema_route():
+    """Debug endpoint: show production DB schema (table names + columns)."""
+    if not DB_REFRESH_AVAILABLE:
+        return jsonify({"error": "db_refresh module not available"}), 500
+    if not get_db_config():
+        return jsonify({"error": "DB_HOST env var not set"}), 500
+
+    conn = get_connection()
+    if not conn:
+        return jsonify({"error": "Could not connect to database"}), 500
+
+    try:
+        schema = discover_schema(conn)
+        table_summary = {t: {"columns": cols, "count": len(cols)} for t, cols in schema.items()}
+        return jsonify({
+            "database": os.environ.get("DB_NAME", "ap_learning_prod"),
+            "tables": len(schema),
+            "schema": table_summary,
+        })
+    finally:
+        conn.close()
+
+
+@app.route('/db/status')
+def db_status_route():
+    """Check DB connectivity and data freshness."""
+    status = {
+        "db_module_loaded": DB_REFRESH_AVAILABLE,
+        "db_config_present": bool(get_db_config()) if DB_REFRESH_AVAILABLE else False,
+        "db_connected": False,
+        "mastery_csv_exists": AUSTIN_WAY_OUTPUT_FILE.exists(),
+        "mastery_csv_age_hours": None,
+    }
+
+    if DB_REFRESH_AVAILABLE:
+        status["mastery_csv_age_hours"] = round(get_data_staleness() or 0, 1)
+
+        if get_db_config():
+            conn = get_connection()
+            if conn:
+                status["db_connected"] = True
+                conn.close()
+
+    return jsonify(status)
 
 
 @app.route('/refresh/harvest-cookie')
@@ -8461,9 +8571,24 @@ if __name__ == '__main__':
     print("Open: http://localhost:5000")
     print()
     print("Pages:")
-    print("  /         - AP Social Studies Dashboard")
-    print("  /coaching - Coaching Schedule")
-    print("  /comms    - Communications Center")
-    print("  /settings - Settings")
+    print("  /           - AP Social Studies Dashboard")
+    print("  /coaching   - Coaching Schedule")
+    print("  /comms      - Communications Center")
+    print("  /settings   - Settings")
+    print("  /db/status  - Database connection status")
+    print("  /db/schema  - Database schema inspector")
     print()
+
+    if DB_REFRESH_AVAILABLE and get_db_config():
+        print("DB refresh:  ENABLED (auto-refresh every %dh)" % AUTO_REFRESH_HOURS)
+        age = get_data_staleness()
+        if age is not None:
+            print("             mastery data is %.1f hours old" % age)
+        else:
+            print("             no mastery CSV yet — will fetch on first load")
+    else:
+        reason = "psycopg2 not installed" if not DB_REFRESH_AVAILABLE else "DB_HOST env var not set"
+        print("DB refresh:  DISABLED (%s)" % reason)
+    print()
+
     app.run(debug=True, port=5000)

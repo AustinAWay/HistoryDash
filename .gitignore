@@ -72,3 +72,4 @@ self_assessment/
 
 # Environment files
 .env
+.vercel
