@@ -230,6 +230,7 @@ def _query_mastery(conn, schema):
     Returns list of row-dicts in austin_way_mastery.csv format, or None.
     """
     strategies = [
+        _strategy_aplearning,
         _strategy_skill_breakdown,
         _strategy_student_progress,
         _strategy_generic_progress,
@@ -242,6 +243,59 @@ def _query_mastery(conn, schema):
         except Exception as e:
             logger.debug("Strategy %s failed: %s", strategy.__name__, e)
     return None
+
+
+def _strategy_aplearning(conn, schema):
+    """
+    Purpose-built query for the aplearning_prod schema:
+      students, skills, skill_mastery_states
+    Groups by student + course + unit and counts mastered / in-progress / not-learned.
+    """
+    required = {"students", "skills", "skill_mastery_states"}
+    if not required.issubset(schema.keys()):
+        return None
+
+    sql = """
+        WITH enrolled AS (
+            -- Students who have at least one mastery record, and which courses they're in
+            SELECT DISTINCT sms.student_id, sk.course_id
+            FROM skill_mastery_states sms
+            JOIN skills sk ON sk.id = sms.skill_id
+        ),
+        student_skill_status AS (
+            SELECT
+                st.display_name   AS student_name,
+                st.email           AS student_email,
+                sk.course_id       AS course,
+                sk.unit_id,
+                sk.unit_name,
+                CASE
+                    WHEN sms.is_learned = true THEN 'mastered'
+                    WHEN sms.mastery_probability > 0.0 THEN 'in_progress'
+                    ELSE 'not_learned'
+                END AS status
+            FROM enrolled e
+            JOIN students st ON st.id = e.student_id
+            JOIN skills sk ON sk.course_id = e.course_id
+            LEFT JOIN skill_mastery_states sms
+                ON sms.student_id = st.id AND sms.skill_id = sk.id
+        )
+        SELECT
+            student_name,
+            student_email,
+            course,
+            unit_id,
+            unit_name,
+            COUNT(*) FILTER (WHERE status = 'mastered')      AS mastered,
+            COUNT(*) FILTER (WHERE status = 'in_progress')   AS in_progress,
+            COUNT(*) FILTER (WHERE status = 'not_learned')   AS not_learned,
+            COUNT(*)                                          AS total
+        FROM student_skill_status
+        GROUP BY student_name, student_email, course, unit_id, unit_name
+        ORDER BY student_name, course, unit_id
+    """
+
+    return _run_mastery_query(conn, sql)
 
 
 def _strategy_skill_breakdown(conn, schema):
