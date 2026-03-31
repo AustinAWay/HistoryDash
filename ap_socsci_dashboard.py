@@ -5327,17 +5327,40 @@ def generate_external_schedule(start_date, num_weeks=2):
 def allocate_students_to_slots(students, slots):
     """
     Allocate students to time slots based on priority.
+    Critical students get 3 sessions, At Risk get 2, others get none.
     Returns list of bookings with student + slot info.
     """
     bookings = []
 
-    # Sort students by need/priority
-    # Critical and High priority first, then by course for batching
-    priority_order = {'Critical': 0, 'High': 1, 'Medium': 2, 'Low': 3, 'At Risk': 1, 'On Track': 2, 'Strong': 3}
-    sorted_students = sorted(students, key=lambda x: (
-        priority_order.get(x.get('risk', 'Unknown'), 5),
-        x.get('course', ''),
-        x.get('student', '')
+    # Determine sessions per student based on risk
+    # Only Critical and At Risk students get sessions in crunch time
+    sessions_by_risk = {
+        'Critical': 3,
+        'At Risk': 2,
+        'On Track': 0,  # Skip - they're fine
+        'Strong': 0,    # Skip - they're fine
+    }
+
+    # Filter to only students who need sessions and expand by session count
+    students_needing_sessions = []
+    for student in students:
+        risk = student.get('risk', 'Unknown')
+        num_sessions = sessions_by_risk.get(risk, 0)
+        if num_sessions > 0:
+            for session_num in range(num_sessions):
+                students_needing_sessions.append({
+                    'student': student,
+                    'session_num': session_num + 1,
+                    'total_sessions': num_sessions
+                })
+
+    # Sort by priority, then spread sessions for same student across different days
+    priority_order = {'Critical': 0, 'At Risk': 1}
+    students_needing_sessions.sort(key=lambda x: (
+        priority_order.get(x['student'].get('risk', 'Unknown'), 5),
+        x['session_num'],  # Spread sessions - all session 1s first, then 2s, etc.
+        x['student'].get('course', ''),
+        x['student'].get('student', '')
     ))
 
     # Separate main slots from overflow
@@ -5347,7 +5370,11 @@ def allocate_students_to_slots(students, slots):
     slot_idx = 0
     overflow_idx = 0
 
-    for student in sorted_students:
+    for entry in students_needing_sessions:
+        student = entry['student']
+        session_num = entry['session_num']
+        total_sessions = entry['total_sessions']
+
         # Try main slots first
         if slot_idx < len(main_slots):
             slot = main_slots[slot_idx]
@@ -5360,14 +5387,18 @@ def allocate_students_to_slots(students, slots):
             bookings.append({
                 'student': student,
                 'slot': None,
-                'scheduled': False
+                'scheduled': False,
+                'session_num': session_num,
+                'total_sessions': total_sessions
             })
             continue
 
         bookings.append({
             'student': student,
             'slot': slot,
-            'scheduled': True
+            'scheduled': True,
+            'session_num': session_num,
+            'total_sessions': total_sessions
         })
 
     return bookings
@@ -5508,11 +5539,17 @@ def generate_session_topic(student):
 
 def generate_external_coach_plan(bookings):
     """Generate the full external coach plan with agendas."""
+    # Count unique students
+    unique_students = set()
+    for b in bookings:
+        unique_students.add(b['student'].get('student', 'Unknown'))
+
     plan = {
         'bookings': [],
         'by_day': {},
         'summary': {
-            'total_students': len(bookings),
+            'unique_students': len(unique_students),
+            'total_sessions': len([b for b in bookings if b['scheduled']]),
             'scheduled': len([b for b in bookings if b['scheduled']]),
             'unscheduled': len([b for b in bookings if not b['scheduled']]),
             'total_hours': 0
@@ -5526,6 +5563,8 @@ def generate_external_coach_plan(bookings):
 
         student = booking['student']
         slot = booking['slot']
+        session_num = booking.get('session_num', 1)
+        total_sessions = booking.get('total_sessions', 1)
 
         # Generate agenda for this student
         agenda = generate_session_agenda(student)
@@ -5549,6 +5588,8 @@ def generate_external_coach_plan(bookings):
             'agenda': agenda,
             'briefing': briefing,
             'session_topic': session_topic,
+            'session_num': session_num,
+            'total_sessions': total_sessions,
             'scheduled': True
         }
 
@@ -5826,8 +5867,12 @@ EXTERNAL_SCHEDULER_HTML = '''
 
     <div class="summary-grid">
         <div class="summary-card">
-            <div class="summary-value">{{ plan.summary.scheduled }}</div>
-            <div class="summary-label">Sessions Scheduled</div>
+            <div class="summary-value">{{ plan.summary.unique_students }}</div>
+            <div class="summary-label">Students</div>
+        </div>
+        <div class="summary-card">
+            <div class="summary-value">{{ plan.summary.total_sessions }}</div>
+            <div class="summary-label">Total Sessions</div>
         </div>
         <div class="summary-card">
             <div class="summary-value">{{ plan.summary.total_hours }}h</div>
@@ -5866,6 +5911,9 @@ EXTERNAL_SCHEDULER_HTML = '''
                 <div>
                     <span class="session-student">{{ session.student_name }}</span>
                     <span class="session-course course-{{ session.course }}">{{ session.course }}</span>
+                    {% if session.total_sessions > 1 %}
+                    <span style="color: #888; font-size: 12px; margin-left: 8px;">(Session {{ session.session_num }}/{{ session.total_sessions }})</span>
+                    {% endif %}
                 </div>
                 <span class="session-time">{{ session.slot.time }}</span>
             </div>
