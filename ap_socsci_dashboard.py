@@ -5931,6 +5931,9 @@ EXTERNAL_SCHEDULER_HTML = '''
         <a href="/external-scheduler/pdf" class="btn btn-primary" target="_blank">
             Download PDF
         </a>
+        <a href="/external-scheduler/signup-csv" class="btn btn-primary" style="background: #6b7280;">
+            Download Sign-Up CSV
+        </a>
         <button class="btn btn-success" onclick="openBlastModal()">
             Send All Bookings
         </button>
@@ -6310,6 +6313,45 @@ def external_scheduler_pdf():
     from flask import Response
     response = Response(html, mimetype='text/html')
     response.headers['Content-Disposition'] = 'attachment; filename=external_coach_schedule.html'
+    return response
+
+
+@app.route('/external-scheduler/signup-csv')
+def external_scheduler_signup_csv():
+    """Generate a blank sign-up sheet CSV with all available slots."""
+    import csv
+    from io import StringIO
+
+    start_date = datetime.now().replace(hour=13, minute=0, second=0, microsecond=0)
+    slots = generate_external_schedule(start_date, num_weeks=2)
+
+    # Filter to only non-overflow slots (main schedule)
+    main_slots = [s for s in slots if not s['overflow']]
+
+    # Create CSV
+    output = StringIO()
+    writer = csv.writer(output)
+
+    # Header row
+    writer.writerow(['Date', 'Day', 'Time (Central)', 'Student Name', 'Course', 'Email', 'Notes'])
+
+    # One row per slot
+    for slot in main_slots:
+        writer.writerow([
+            slot['date'],
+            slot['day'],
+            slot['time'],
+            '',  # Student Name - blank for sign-up
+            '',  # Course - blank
+            '',  # Email - blank
+            ''   # Notes - blank
+        ])
+
+    # Return as CSV download
+    from flask import Response
+    csv_content = output.getvalue()
+    response = Response(csv_content, mimetype='text/csv')
+    response.headers['Content-Disposition'] = 'attachment; filename=coaching_signup_sheet.csv'
     return response
 
 
